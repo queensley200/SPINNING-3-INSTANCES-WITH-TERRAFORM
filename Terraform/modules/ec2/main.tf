@@ -1,6 +1,6 @@
 resource "aws_instance" "web" {
   ami = var.ami_id
-  count = var.count
+  count = var.instance_count
   instance_type = var.instance_type
   key_name = var.key_name
   subnet_id = var.subnet_id
