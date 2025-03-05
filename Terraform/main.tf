@@ -20,5 +20,5 @@ module "ec2" {
 }
 
 output "ec2_public_ip_1" {
-  value = module.ec2.public_ip
+  value = module.ec2[*].public_ip
 }
