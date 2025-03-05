@@ -10,7 +10,7 @@ variable "instance_type"{
 
 variable "key_name" {
   description = "Key pair name for EC2"
-  default = "easy"
+  default = "My_web"
 }
 
 
@@ -24,4 +24,11 @@ variable "vpc_id" {
   description = "The ID of the VPC in which the security group will be created"
   type        = string
   default = "vpc-12345678"
+}
+
+variable "count" {
+  description = "The number of EC2 instances to launch"
+  type        = number
+  default     = 1
+  
 }
