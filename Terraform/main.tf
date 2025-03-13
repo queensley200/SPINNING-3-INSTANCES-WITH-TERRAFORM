@@ -19,6 +19,6 @@ module "ec2" {
   subnet_id = module.vpc.subnet_id
 }
 
-output "ec2_public_ip_1" {
-  value = module.ec2[*].public_ip
+output "ec2_public_ips" {
+  value = module.ec2.public_ips
 }
