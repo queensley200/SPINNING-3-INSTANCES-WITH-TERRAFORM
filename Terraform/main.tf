@@ -20,5 +20,5 @@ module "ec2" {
 }
 
 output "ec2_public_ips_1" {
-  value = module.ec2[*].public_ip
+  value = [for instance in module.ec2 : instance.public_ip if can(instance.public_ip)]
 }
