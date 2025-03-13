@@ -1,17 +1,16 @@
 resource "aws_instance" "web" {
-  for_each = toset(var.counts)
-  ami           = var.ami_id
+  count         = length(var.instance_names)
+  ami          = var.ami_id
   instance_type = var.instance_type
   key_name      = var.key_name
   subnet_id     = var.subnet_id
   vpc_security_group_ids = [aws_security_group.web.id]
 
-  associate_public_ip_address = true  # Ensure this is set to get a public IP
-
   tags = {
-    Name = each.value
+    Name = var.instance_names[count.index]  # Assign names dynamically
   }
 }
+
 
 
 resource "aws_security_group" "web" {
