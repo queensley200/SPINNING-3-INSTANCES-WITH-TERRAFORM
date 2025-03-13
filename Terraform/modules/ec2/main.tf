@@ -36,7 +36,8 @@ resource "aws_security_group" "web" {
   }
 }
 
-output "public_ip" {
-  value = aws_instance.web[*].public_ip
-
+output "public_ips" {
+  description = "Public IPs of the created EC2 instances"
+  value       = { for name, instance in aws_instance.web : name => instance.public_ip }
 }
+
