@@ -1,18 +1,16 @@
 resource "aws_instance" "web" {
   for_each = { for idx, name in var.counts : name => idx }
-  ami = var.ami_id
-  instance_type = var.instance_type
-  key_name = var.key_name
-  subnet_id = var.subnet_id
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  subnet_id              = var.subnet_id
   vpc_security_group_ids = [aws_security_group.web.id]
 
   tags = {
-    tags = {
-      Name = each.key
-    }
-
-  }
+    Name = each.key
+  }
 }
+
 
 resource "aws_security_group" "web" {
   vpc_id = var.vpc_id
