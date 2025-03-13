@@ -26,9 +26,9 @@ variable "vpc_id" {
   default = "vpc-12345678"
 }
 
-variable "instance_count" {
+variable "counts" {
   description = "The number of EC2 instances to launch"
-  type        = number
-  default     = 1
-  
+  type        = list(string)
+  default     = ["web1", "web2", "web3"]
+  
 }
