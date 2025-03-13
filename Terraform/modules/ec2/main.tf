@@ -1,13 +1,15 @@
 resource "aws_instance" "web" {
-  for_each = { for idx, name in var.counts : name => idx }
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  key_name               = var.key_name
-  subnet_id              = var.subnet_id
+  for_each = toset(var.counts)
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  key_name      = var.key_name
+  subnet_id     = var.subnet_id
   vpc_security_group_ids = [aws_security_group.web.id]
 
+  associate_public_ip_address = true  # Ensure this is set to get a public IP
+
   tags = {
-    Name = each.key
+    Name = each.value
   }
 }
 
@@ -37,7 +39,6 @@ resource "aws_security_group" "web" {
 }
 
 output "public_ips" {
-  description = "Public IPs of the created EC2 instances"
-  value       = { for name, instance in aws_instance.web : name => instance.public_ip }
+  value = { for key, instance in aws_instance.web : key => instance.public_ip }
 }
 
