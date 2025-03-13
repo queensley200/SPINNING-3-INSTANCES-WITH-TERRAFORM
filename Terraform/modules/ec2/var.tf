@@ -27,8 +27,7 @@ variable "vpc_id" {
 }
 
 variable "counts" {
-  description = "The number of EC2 instances to launch"
+  description = "The list of EC2 instance names"
   type        = list(string)
-  default     = ["web1", "web2", "web3"]
-  
+  default     = ["web1", "web2", "web3"]
 }
