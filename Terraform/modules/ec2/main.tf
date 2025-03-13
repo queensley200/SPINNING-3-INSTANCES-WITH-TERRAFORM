@@ -1,5 +1,5 @@
 resource "aws_instance" "web" {
-  for_each = toset(var.counts)
+  for_each = { for idx, name in var.counts : name => idx }
   ami = var.ami_id
   instance_type = var.instance_type
   key_name = var.key_name
@@ -7,7 +7,10 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.web.id]
 
   tags = {
-    Name = each.value
+    tags = {
+      Name = each.key
+    }
+
   }
 }
 
