@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "ec2_public_ips" {
-  value =  module.ec2[0].public_ip
+  value = values(module.ec2.public_ips)
 }
 
 
