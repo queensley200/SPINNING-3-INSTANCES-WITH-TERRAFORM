@@ -42,8 +42,8 @@ variable "cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "instance_names" {
+variable "number_of_instance" {
   description = "List of instance names"
-  type        = list(string)
-  default     = ["web1", "web2", "web3"]  # Modify as needed
+  type        = int
+  default     = 3
 }
