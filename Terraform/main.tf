@@ -11,7 +11,7 @@ module "vpc" {
 # Call the EC2 module
 module "ec2" {
   source = "./modules/ec2"
-  count = length (var.instance_names)
+  counts = var.number_of_instance
   instance_type = var.instance_type
   ami_id = var.ami_id
   key_name = var.key_name
