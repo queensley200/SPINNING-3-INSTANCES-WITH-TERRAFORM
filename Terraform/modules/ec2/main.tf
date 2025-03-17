@@ -1,5 +1,5 @@
 resource "aws_instance" "web" {
-  count         = length(var.instance_names)
+  count         = var.counts
   ami          = var.ami_id
   instance_type = var.instance_type
   key_name      = var.key_name
@@ -7,7 +7,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.web.id]
 
   tags = {
-    Name = var.instance_names[count.index]  # Assign names dynamically
+    Name = "web-server- ${count.index}"
   }
 }
 
