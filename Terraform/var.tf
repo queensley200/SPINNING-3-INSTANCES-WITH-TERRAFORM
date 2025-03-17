@@ -44,6 +44,6 @@ variable "cidr_block" {
 
 variable "number_of_instance" {
   description = "List of instance names"
-  type        = int
+  type        = number
   default     = 3
 }
