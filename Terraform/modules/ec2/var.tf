@@ -28,5 +28,5 @@ variable "vpc_id" {
 
 variable "counts" {
   description = "The list of EC2 instance names"
-  type        = int
+  type        = number
 }
